@@ -10,7 +10,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -74,67 +73,98 @@ public class PostTweetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.posterror.setVisible(false);
-        this.genbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
+        this.genbutton.setOnMouseClicked((Event t) -> {
+            try {
 
-                    String word = getWord();
-                    if (word.equals("")) {
-                        disableButton(tweetbutton);
-                        posterror.setText("Database is Empty");
-                        posterror.setVisible(true);
-                    } else {
-                        tweetarea.setText(template1 + word + template2);
-                        posterror.setVisible(false);
-                        enableButton(tweetbutton);
-                        enableButton(schedbutton);
-                        wordfield.setText(word);
-                        enableTextField(wordfield);
-                        enableButton(pluralizer);
-                        enableTextField(newword);
-                        wordlabel.setOpacity(1);
-                        newword.clear();
-                        enableButton(bothbutton);
-                        enableButton(capitalizer);
-                        newwordlabel.setOpacity(0.5);
-                        disableButton(replacebutton);
-                    }
-
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        this.custombutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
-                    tweetarea.setText(template1 + "YOUR WORD HERE" + template2);
+                String word = getWord();
+                if (word.equals("")) {
+                    disableButton(tweetbutton);
+                    posterror.setText("Database is Empty");
+                    posterror.setVisible(true);
+                } else {
+                    tweetarea.setText(template1 + word + template2);
+                    posterror.setVisible(false);
                     enableButton(tweetbutton);
                     enableButton(schedbutton);
-                    posterror.setVisible(false);
-                    wordfield.clear();
-                    disableTextField(wordfield);
-                    disableButton(pluralizer);
-                    disableTextField(newword);
-                    //newword.setEditable(false);
-                    disableLabel(wordlabel);
+                    wordfield.setText(word);
+                    enableTextField(wordfield);
+                    enableButton(pluralizer);
+                    enableTextField(newword);
+                    wordlabel.setOpacity(1);
                     newword.clear();
-                    disableButton(bothbutton);
-                    disableButton(capitalizer);
-                    disableLabel(newwordlabel);
+                    enableButton(bothbutton);
+                    enableButton(capitalizer);
+                    newwordlabel.setOpacity(0.5);
                     disableButton(replacebutton);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
                 }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         });
-        this.tweetbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
-                    Tweet();
+        this.custombutton.setOnMouseClicked((Event t) -> {
+            try {
+                tweetarea.setText(template1 + "YOUR WORD HERE" + template2);
+                enableButton(tweetbutton);
+                enableButton(schedbutton);
+                posterror.setVisible(false);
+                wordfield.clear();
+                disableTextField(wordfield);
+                disableButton(pluralizer);
+                disableTextField(newword);
+                //newword.setEditable(false);
+                disableLabel(wordlabel);
+                newword.clear();
+                disableButton(bothbutton);
+                disableButton(capitalizer);
+                disableLabel(newwordlabel);
+                disableButton(replacebutton);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        this.tweetbutton.setOnMouseClicked((Event t) -> {
+            try {
+                Tweet();
+                tweetbutton.setOpacity(0.5);
+                tweetbutton.setDisable(true);
+                schedbutton.setOpacity(0.5);
+                schedbutton.setDisable(true);
+                wordfield.setDisable(true);
+                wordfield.setOpacity(0.5);
+                pluralizer.setDisable(true);
+                pluralizer.setOpacity(0.5);
+                newword.setEditable(false);
+                newword.setOpacity(0.5);
+                replacebutton.setDisable(true);
+                replacebutton.setOpacity(0.5);
+                wordlabel.setOpacity(0.5);
+                newwordlabel.setOpacity(0.5);
+                bothbutton.setOpacity(0.5);
+                bothbutton.setDisable(true);
+                capitalizer.setOpacity(0.5);
+                capitalizer.setDisable(true);
+                wordfield.clear();
+                newword.clear();
+                posterror.setVisible(false);
+            } catch (TwitterException ex) {
+                System.out.println("error1");
+                ex.printStackTrace();
+            }
+        });
+        this.schedbutton.setOnMouseClicked((Event t) -> {
+            try {
+//KEEP
+//if (TimedTweeterController.getQueue().size() <= 49) {
+                if (TimedTweeterController.getList().size() <= 49) {
+                    TimedTweeterController.addSchedTweet(tweetarea.getText());
+                    //ConcurrentLinkedQueue clq = TimedTweeterController.getQueue();
+                    List lst = TimedTweeterController.getList();
+                    //Driver.getGC().getTTC().updateQueueSizeLabel(clq.size());
+                    Driver.getGC().getTTC().updateQueueSizeLabel(lst.size());
+                    if (lst.size() < 11) {
+                        Driver.getGC().getTTC().updateNextTweets();
+                    }
                     tweetbutton.setOpacity(0.5);
                     tweetbutton.setDisable(true);
                     schedbutton.setOpacity(0.5);
@@ -156,105 +186,48 @@ public class PostTweetController implements Initializable {
                     wordfield.clear();
                     newword.clear();
                     posterror.setVisible(false);
-                } catch (TwitterException ex) {
-                    System.out.println("error1");
-                    ex.printStackTrace();
+                    tweetarea.clear();
+                } else {
+                    posterror.setText("Queue is full!");
+                    posterror.setVisible(true);
                 }
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
-        this.schedbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
-//KEEP
-                    //if (TimedTweeterController.getQueue().size() <= 49) {
-                    if (TimedTweeterController.getList().size() <= 49) {
-                        TimedTweeterController.addSchedTweet(tweetarea.getText());
-                        //ConcurrentLinkedQueue clq = TimedTweeterController.getQueue();
-                        List lst = TimedTweeterController.getList();
-                        //Driver.getGC().getTTC().updateQueueSizeLabel(clq.size());
-                        Driver.getGC().getTTC().updateQueueSizeLabel(lst.size());
-                        if (lst.size()<11){
-                            Driver.getGC().getTTC().updateNextTweets();
-                        }
-                        tweetbutton.setOpacity(0.5);
-                        tweetbutton.setDisable(true);
-                        schedbutton.setOpacity(0.5);
-                        schedbutton.setDisable(true);
-                        wordfield.setDisable(true);
-                        wordfield.setOpacity(0.5);
-                        pluralizer.setDisable(true);
-                        pluralizer.setOpacity(0.5);
-                        newword.setEditable(false);
-                        newword.setOpacity(0.5);
-                        replacebutton.setDisable(true);
-                        replacebutton.setOpacity(0.5);
-                        wordlabel.setOpacity(0.5);
-                        newwordlabel.setOpacity(0.5);
-                        bothbutton.setOpacity(0.5);
-                        bothbutton.setDisable(true);
-                        capitalizer.setOpacity(0.5);
-                        capitalizer.setDisable(true);
-                        wordfield.clear();
-                        newword.clear();
-                        posterror.setVisible(false);
-                        tweetarea.clear();
-                    } else {
-                        posterror.setText("Queue is full!");
-                        posterror.setVisible(true);
-                    }
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        this.pluralizer.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                String plural = pluralize(wordfield.getText());
-                newword.setText(plural);
-                newword.setEditable(true);
-                newwordlabel.setOpacity(1);
-                replacebutton.setDisable(false);
-                replacebutton.setOpacity(1);
-            }
-
+        this.pluralizer.setOnMouseClicked((Event t) -> {
+            String plural = pluralize(wordfield.getText());
+            newword.setText(plural);
+            newword.setEditable(true);
+            newwordlabel.setOpacity(1);
+            replacebutton.setDisable(false);
+            replacebutton.setOpacity(1);
         });
 
-        this.capitalizer.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                String string = capitalize(wordfield.getText());
-                newword.setText(string);
-                newword.setEditable(true);
-                newwordlabel.setOpacity(1);
-                replacebutton.setDisable(false);
-                replacebutton.setOpacity(1);
-            }
-
+        this.capitalizer.setOnMouseClicked((Event t) -> {
+            String string = capitalize(wordfield.getText());
+            newword.setText(string);
+            newword.setEditable(true);
+            newwordlabel.setOpacity(1);
+            replacebutton.setDisable(false);
+            replacebutton.setOpacity(1);
         });
-        this.bothbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                String string = pluralize(wordfield.getText());
-                string = capitalize(string);
-                newword.setEditable(true);
-                newwordlabel.setOpacity(1);
-                newword.setText(string);
-                replacebutton.setDisable(false);
-                replacebutton.setOpacity(1);
-            }
+        this.bothbutton.setOnMouseClicked((Event t) -> {
+            String string = pluralize(wordfield.getText());
+            string = capitalize(string);
+            newword.setEditable(true);
+            newwordlabel.setOpacity(1);
+            newword.setText(string);
+            replacebutton.setDisable(false);
+            replacebutton.setOpacity(1);
         });
 
-        this.replacebutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
-                    update(newword.getText());
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
+        this.replacebutton.setOnMouseClicked((Event t) -> {
+            try {
+                update(newword.getText());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
         });
         this.tweetbutton.setOpacity(0.5);
