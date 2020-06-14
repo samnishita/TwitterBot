@@ -7,13 +7,11 @@ package controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -126,36 +124,35 @@ public class TimedTweeterController implements Initializable {
         status.setVisible(false);
         cancelbutton.setDisable(true);
         cancelbutton.setOpacity(0.5);
-        for (Label each : tweetLabels) {
+        tweetLabels.forEach((each) -> {
             each.setVisible(false);
-        }
-        for (Button each : deleteButtons) {
+        });
+        deleteButtons.stream().map((each) -> {
             each.setVisible(false);
-            each.setOnMouseClicked(new EventHandler() {
-                @Override
-                public void handle(Event t) {
-                    int i = deleteButtons.indexOf(each);
-                    //KEEP
+            return each;
+        }).forEachOrdered((each) -> {
+            each.setOnMouseClicked((Event t) -> {
+                int i = deleteButtons.indexOf(each);
+                //KEEP
 //                    Label label = tweetLabels.get(i);
 //                    String text = label.getText();
 
-                    //tweetQueue.remove(text);
-                    tweetList.remove(i);
-                    updateNextTweets();
-                    updateQueueSizeLabel(tweetList.size());
-                    if (tweetList.size() == 0) {
-                        if (beginbutton.isDisabled()) {
-                            status.setText("Completed");
-                            timerobj.getTimer().cancel();
-                        }
-
-                        enableBeginButton();
-                        disableCancelButton();
-
-                    }
-                }
+//tweetQueue.remove(text);
+tweetList.remove(i);
+updateNextTweets();
+updateQueueSizeLabel(tweetList.size());
+if (tweetList.size() == 0) {
+    if (beginbutton.isDisabled()) {
+        status.setText("Completed");
+        timerobj.getTimer().cancel();
+    }
+    
+    enableBeginButton();
+    disableCancelButton();
+    
+}
             });
-        }
+        });
 
         this.beginbutton.setOnMouseClicked(new EventHandler() {
             @Override
