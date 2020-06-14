@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AnalyticsController">
+   <children>
+      <Button fx:id="retweetbutton" layoutX="477.0" layoutY="83.0" mnemonicParsing="false" text="Get Retweets" />
+      <TableView fx:id="tweettable" layoutX="14.0" layoutY="39.0" prefHeight="197.0" prefWidth="435.0">
+        <columns>
+          <TableColumn fx:id="tweetcolumn" prefWidth="315.0" text="Tweet" />
+            <TableColumn fx:id="retweetcolumn" prefWidth="60.0" text="Retweets" />
+            <TableColumn fx:id="likecolumn" prefWidth="59.0" text="Likes" />
+        </columns>
+      </TableView>
+      <Label layoutX="95.0" layoutY="10.0" text="Followers:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="followercount" layoutX="176.0" layoutY="10.0" text="TF">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="429.0" layoutY="10.0" text="Likes:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="likecount" layoutX="481.0" layoutY="10.0" text="TL">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="260.0" layoutY="10.0" text="Retweets:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="retweetcount" layoutX="345.0" layoutY="10.0" text="TR">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

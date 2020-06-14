@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TimedTweeterController">
+   <children>
+      <ScrollPane layoutX="22.0" layoutY="145.0" prefHeight="100.0" prefWidth="556.0">
+         <content>
+            <HBox prefHeight="400.0" prefWidth="534.0">
+               <children>
+                  <GridPane prefHeight="500.0" prefWidth="525.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="438.0" minWidth="10.0" prefWidth="436.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.0" minWidth="0.0" prefWidth="67.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="63.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="111.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="tweet0" text="Tweet Goes Here" wrapText="true">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet1" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet2" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet3" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet4" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet5" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet6" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet7" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet8" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="8">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="tweet9" text="Tweet Goes Here" wrapText="true" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Button fx:id="delete0" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" />
+                        <Button fx:id="delete1" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="delete2" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="delete3" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="delete4" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button fx:id="delete5" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="delete6" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button fx:id="delete7" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Button fx:id="delete8" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Button fx:id="delete9" mnemonicParsing="false" prefHeight="27.0" prefWidth="101.0" text="Delete" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+      <Group layoutX="85.0" layoutY="15.0">
+         <children>
+            <Label fx:id="schedule" alignment="CENTER" prefWidth="150.0" text="Schedule Tweets with" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
+            </Label>
+            <Label fx:id="inbetween" alignment="CENTER" layoutX="230.0" text="minutes in between Tweets" textAlignment="CENTER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets top="6.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="nummintext" layoutX="162.0" prefHeight="27.0" prefWidth="60.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </Group>
+      <Label fx:id="error" alignment="CENTER" layoutX="168.0" layoutY="53.0" prefHeight="17.0" prefWidth="241.0" text="Error Messages Go Here" textAlignment="CENTER" textFill="RED" />
+      <Button fx:id="beginbutton" layoutX="43.0" layoutY="77.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Begin Tweeting" />
+      <Label fx:id="status" layoutX="168.0" layoutY="82.0" text="Status Updates" />
+      <Button fx:id="cancelbutton" layoutX="43.0" layoutY="112.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="108.0" text="Cancel" />
+      <Label layoutX="409.0" layoutY="69.0" text="Current Tweets in Queue: " />
+      <Label fx:id="queuesize" alignment="CENTER" layoutX="407.0" layoutY="91.0" prefHeight="17.0" prefWidth="144.0" text="Number goes here" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="216.0" layoutY="125.0" text="Next 10 Upcoming Tweets" />
+   </children>
+</Pane>
