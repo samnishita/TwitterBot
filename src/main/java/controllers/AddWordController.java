@@ -5,21 +5,17 @@
  */
 package controllers;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 import mysql.Reader;
 
 /**
@@ -64,29 +60,19 @@ public class AddWordController implements Initializable {
         this.addbutton.setOpacity(0.5);
         this.addButClickable = false;
 
-        this.filebutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                fileHandler();
+        this.filebutton.setOnMouseClicked((Event t) -> {
+            fileHandler();
+        });
+        this.addbutton.setOnMouseClicked((Event t) -> {
+            if (textfield.getText().toLowerCase().endsWith(".txt")) {
+                Reader.readFile(textfield.getText(), plurals, addworderror);
+                textfield.clear();
+            } else {
+                addworderror.setText("The filename must end in .txt");
             }
         });
-        this.addbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                if (textfield.getText().toLowerCase().endsWith(".txt")) {
-                    Reader.readFile(textfield.getText(), plurals, addworderror);
-                    textfield.clear();
-                }
-                else{
-                    addworderror.setText("The filename must end in .txt");
-                }
-            }
-        });
-        this.textfield.setOnKeyTyped(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                booleanChanger();
-            }
+        this.textfield.setOnKeyTyped((Event t) -> {
+            booleanChanger();
         });
     }
 
