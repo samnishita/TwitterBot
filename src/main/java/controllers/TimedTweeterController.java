@@ -130,7 +130,7 @@ public class TimedTweeterController implements Initializable {
         deleteButtons.stream().map((each) -> {
             each.setVisible(false);
             return each;
-        }).forEachOrdered((each) -> {
+        }).forEachOrdered((Button each) -> {
             each.setOnMouseClicked((Event t) -> {
                 int i = deleteButtons.indexOf(each);
                 //KEEP
@@ -138,41 +138,39 @@ public class TimedTweeterController implements Initializable {
 //                    String text = label.getText();
 
 //tweetQueue.remove(text);
-tweetList.remove(i);
-updateNextTweets();
-updateQueueSizeLabel(tweetList.size());
-if (tweetList.size() == 0) {
-    if (beginbutton.isDisabled()) {
-        status.setText("Completed");
-        timerobj.getTimer().cancel();
-    }
-    
-    enableBeginButton();
-    disableCancelButton();
-    
-}
+                tweetList.remove(i);
+                updateNextTweets();
+                updateQueueSizeLabel(tweetList.size());
+                if (tweetList.isEmpty()) {
+                    if (beginbutton.isDisabled()) {
+                        status.setText("Completed");
+                        timerobj.getTimer().cancel();
+                    }
+
+                    enableBeginButton();
+                    disableCancelButton();
+
+                }
             });
         });
 
-        this.beginbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
-                try {
-                    min = Integer.parseInt(nummintext.getText().trim());
-                } catch (NumberFormatException e) {
-                    error.setText("Enter  a whole  number between 1 and 60");
-                    error.setVisible(true);
-                    nummintext.clear();
-                    status.setText("");
-                    return;
-                } catch (IllegalArgumentException ex) {
-                    error.setText("Enter  a whole  number between 1 and 60");
-                    error.setVisible(true);
-                    nummintext.clear();
-                    status.setText("");
-                    return;
-                }
-                //KEEP
+        this.beginbutton.setOnMouseClicked((Event t) -> {
+            try {
+                min = Integer.parseInt(nummintext.getText().trim());
+            } catch (NumberFormatException e) {
+                error.setText("Enter  a whole  number between 1 and 60");
+                error.setVisible(true);
+                nummintext.clear();
+                status.setText("");
+                return;
+            } catch (IllegalArgumentException ex) {
+                error.setText("Enter  a whole  number between 1 and 60");
+                error.setVisible(true);
+                nummintext.clear();
+                status.setText("");
+                return;
+            }
+            //KEEP
 //                if (tweetQueue.size() > 0 && min >= 1 && min <= 60) {
 //                    try {
 //                        tweetSchedule();
@@ -187,46 +185,39 @@ if (tweetList.size() == 0) {
 //                } else if (tweetQueue.size() == 0) {
 //                    error.setText("Queue is empty");
 //                    error.setVisible(true);
-//                } 
-                if (tweetList.size() > 0 && min >= 1 && min <= 60) {
-                    try {
-                        tweetSchedule();
-                        error.setVisible(false);
-                        status.setVisible(true);
-                        beginbutton.setDisable(true);
-                        beginbutton.setOpacity(0.5);
-                        status.setText("Running...");
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                } else if (tweetList.size() == 0) {
-                    error.setText("Queue is empty");
-                    error.setVisible(true);
-                } else if (nummintext.getText().trim().length() == 0) {
-                    error.setText("Enter  a whole  number between 1 and 60");
-                    error.setVisible(true);
-                } else if (min > 60 || min < 1) {
-                    error.setText("Enter  a whole  number between 1 and 60");
-                    error.setVisible(true);
-                }
-
-            }
-
-        });
-        this.cancelbutton.setOnMouseClicked(new EventHandler() {
-            @Override
-            public void handle(Event t) {
+//                }
+            if (tweetList.size() > 0 && min >= 1 && min <= 60) {
                 try {
-                    timerobj.getTimer().cancel();
-                    beginbutton.setDisable(false);
-                    beginbutton.setOpacity(1);
-                    cancelbutton.setDisable(true);
-                    cancelbutton.setOpacity(0.5);
+                    tweetSchedule();
+                    error.setVisible(false);
+                    status.setVisible(true);
+                    beginbutton.setDisable(true);
+                    beginbutton.setOpacity(0.5);
+                    status.setText("Running...");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+            } else if (tweetList.isEmpty()) {
+                error.setText("Queue is empty");
+                error.setVisible(true);
+            } else if (nummintext.getText().trim().length() == 0) {
+                error.setText("Enter  a whole  number between 1 and 60");
+                error.setVisible(true);
+            } else if (min > 60 || min < 1) {
+                error.setText("Enter  a whole  number between 1 and 60");
+                error.setVisible(true);
             }
-
+        });
+        this.cancelbutton.setOnMouseClicked((Event t) -> {
+            try {
+                timerobj.getTimer().cancel();
+                beginbutton.setDisable(false);
+                beginbutton.setOpacity(1);
+                cancelbutton.setDisable(true);
+                cancelbutton.setOpacity(0.5);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
     }
 
@@ -252,17 +243,15 @@ if (tweetList.size() == 0) {
         cancelbutton.setOpacity(1);
         try {
             Thread bgTimer = new Thread() {
+                @Override
                 public void run() {
                     Timer timer = timerobj.createTimer();
                     TimerTask task = new Helper();
                     timer.schedule(task, 200, min * 60000);
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            //KEEP
+                    Platform.runLater(() -> {
+                        //KEEP
 //                            queuesize.setText(tweetQueue.size() + "");
-                            queuesize.setText(tweetList.size() + "");
-
-                        }
+                        queuesize.setText(tweetList.size() + "");
                     });
 
                 }
