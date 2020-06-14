@@ -9,9 +9,6 @@ import controllers.TimedTweeterController;
 import java.util.List;
 import java.util.TimerTask;
 import java.util.Timer;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -32,6 +29,7 @@ public class Helper extends TimerTask {
     public long timecur = 0;
     public long diff;
 
+    @Override
     public void run() {
         timecur = System.currentTimeMillis();
         diff = timecur - timeprev;
@@ -43,16 +41,14 @@ public class Helper extends TimerTask {
             timecur = System.currentTimeMillis();
             //KEEP
 //            System.out.println(queue.poll().toString());
-            System.out.println(list.get(0).toString());
+            System.out.println(list.get(0));
             list.remove(0);
             timeprev = System.currentTimeMillis();
-            Platform.runLater(new Runnable() {
-                public void run() {
-                    //KEEP
+            Platform.runLater(() -> {
+                //KEEP
 //                    Driver.getGC().getTTC().updateQueueSizeLabel(queue.size());
-                    Driver.getGC().getTTC().updateQueueSizeLabel(list.size());
-                    Driver.getGC().getTTC().updateNextTweets();
-                }
+                Driver.getGC().getTTC().updateQueueSizeLabel(list.size());
+                Driver.getGC().getTTC().updateNextTweets();
             });
 
         } //catch (TwitterException ex) {
@@ -70,14 +66,12 @@ public class Helper extends TimerTask {
 //                }
 //            });
 //        }
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             timer.cancel();
-            Platform.runLater(new Runnable() {
-                public void run() {
-                    Driver.getGC().getTTC().getStatusLabel().setText("Complete!");
-                    Driver.getGC().getTTC().enableBeginButton();
-                    Driver.getGC().getTTC().disableCancelButton();
-                }
+            Platform.runLater(() -> {
+                Driver.getGC().getTTC().getStatusLabel().setText("Complete!");
+                Driver.getGC().getTTC().enableBeginButton();
+                Driver.getGC().getTTC().disableCancelButton();
             });
         }
     }
