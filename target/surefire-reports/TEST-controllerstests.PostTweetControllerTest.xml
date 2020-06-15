@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="PostTweetControllerTest" time="2.127" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="controllerstests.PostTweetControllerTest" time="1.641" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,9 +17,8 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib"/>
-    <property name="sun.java.command" value="/Users/samnishita/NetBeansProjects/TwitterBot/target/surefire/surefirebooter2519705632228447145.jar /Users/samnishita/NetBeansProjects/TwitterBot/target/surefire 2020-06-14T21-16-16_770-jvmRun1 surefire8502295969526609954tmp surefire_04080043465692868911tmp"/>
+    <property name="sun.java.command" value="/Users/samnishita/NetBeansProjects/TwitterBot/target/surefire/surefirebooter1425455933488994214.jar /Users/samnishita/NetBeansProjects/TwitterBot/target/surefire 2020-06-14T21-44-16_930-jvmRun1 surefire869376520816148623tmp surefire_03245829088226945037tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="test" value="PostTweetControllerTest"/>
     <property name="surefire.test.class.path" value="/Users/samnishita/NetBeansProjects/TwitterBot/target/test-classes:/Users/samnishita/NetBeansProjects/TwitterBot/target/classes:/Users/samnishita/.m2/repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar:/Users/samnishita/.m2/repository/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar:/Users/samnishita/.m2/repository/org/twitter4j/twitter4j-core/4.0.6/twitter4j-core-4.0.6.jar:/Users/samnishita/.m2/repository/org/atteo/evo-inflector/1.2.2/evo-inflector-1.2.2.jar:/Users/samnishita/.m2/repository/org/twitter4j/twitter4j-examples/4.0.7/twitter4j-examples-4.0.7.jar:/Users/samnishita/.m2/repository/org/twitter4j/twitter4j-stream/4.0.7/twitter4j-stream-4.0.7.jar:/Users/samnishita/.m2/repository/org/twitter4j/twitter4j-async/4.0.7/twitter4j-async-4.0.7.jar:/Users/samnishita/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar:/Users/samnishita/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/Users/samnishita/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/samnishita/.m2/repository/org/junit/platform/junit-platform-commons/1.6.2/junit-platform-commons-1.6.2.jar:/Users/samnishita/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar:/Users/samnishita/.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/samnishita"/>
@@ -32,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/samnishita/NetBeansProjects/TwitterBot/target/surefire/surefirebooter2519705632228447145.jar"/>
+    <property name="surefire.real.class.path" value="/Users/samnishita/NetBeansProjects/TwitterBot/target/surefire/surefirebooter1425455933488994214.jar"/>
     <property name="sun.boot.class.path" value="/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/resources.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jsse.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jce.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/charsets.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jfr.jar:/Users/samnishita/Downloads/jdk1.8.0_211.jdk/Contents/Home/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
@@ -63,5 +62,5 @@
     <property name="java.class.version" value="52.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="shouldGetWord" classname="PostTweetControllerTest" time="1.971"/>
+  <testcase name="shouldGetWord" classname="controllerstests.PostTweetControllerTest" time="1.58"/>
 </testsuite>
