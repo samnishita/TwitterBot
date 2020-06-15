@@ -199,7 +199,6 @@ public class TimedTweeterController implements Initializable {
     }
 
     public static void addSchedTweet(String string) {
-
         tweetList.add(string);
     }
 
