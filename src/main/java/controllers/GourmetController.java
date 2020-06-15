@@ -21,18 +21,18 @@ import javafx.scene.layout.Pane;
 public class GourmetController implements Initializable {
 
     @FXML
-    Tab posttab;
+    private Tab posttab;
 
     @FXML
-    Tab addtab;
+    private Tab addtab;
 
     @FXML
-    Pane pane;
+    private Pane pane;
 //not for use now
 //    @FXML
-//    Tab analyticstab;
+//    private Tab analyticstab;
     @FXML
-    Tab scheduletab;
+    private Tab scheduletab;
 
     private PostTweetController PTC;
     private AddWordController AWC;

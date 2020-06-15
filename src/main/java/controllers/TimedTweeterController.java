@@ -35,73 +35,72 @@ import twitter4j.TwitterFactory;
 public class TimedTweeterController implements Initializable {
 
     @FXML
-    Label schedule;
+    private Label schedule;
     @FXML
-    TextField nummintext;
+    private TextField nummintext;
     @FXML
-    Label inbetween;
+    private Label inbetween;
     @FXML
-    Label error;
+    private Label error;
     @FXML
-    VBox tweetvbox;
+    private VBox tweetvbox;
     @FXML
-    TableView tableview;
+    private TableView tableview;
     @FXML
-    Button tempbutton;
+    private Button tempbutton;
     @FXML
-    Button beginbutton;
+    private Button beginbutton;
     @FXML
-    Label status;
+    private Label status;
     @FXML
-    Label queuesize;
+    private Label queuesize;
     @FXML
-    Button cancelbutton;
+    private Button cancelbutton;
 
     @FXML
-    Label tweet0;
+    private Label tweet0;
     @FXML
-    Label tweet1;
+    private Label tweet1;
     @FXML
-    Label tweet2;
+    private Label tweet2;
     @FXML
-    Label tweet3;
+    private Label tweet3;
     @FXML
-    Label tweet4;
+    private Label tweet4;
     @FXML
-    Label tweet5;
+    private Label tweet5;
     @FXML
-    Label tweet6;
+    private Label tweet6;
     @FXML
-    Label tweet7;
+    private Label tweet7;
     @FXML
-    Label tweet8;
+    private Label tweet8;
     @FXML
-    Label tweet9;
+    private Label tweet9;
 
     @FXML
-    Button delete0;
+    private Button delete0;
     @FXML
-    Button delete1;
+    private Button delete1;
     @FXML
-    Button delete2;
+    private Button delete2;
     @FXML
-    Button delete3;
+    private Button delete3;
     @FXML
-    Button delete4;
+    private Button delete4;
     @FXML
-    Button delete5;
+    private Button delete5;
     @FXML
-    Button delete6;
+    private Button delete6;
     @FXML
-    Button delete7;
+    private Button delete7;
     @FXML
-    Button delete8;
+    private Button delete8;
     @FXML
-    Button delete9;
+    private Button delete9;
 
     private final int MAXTWEETS = 50;
     private int min;
-    //private static ConcurrentLinkedQueue<String> tweetQueue = new ConcurrentLinkedQueue();
     private static TimerObject timerobj = new TimerObject();
     private ArrayList<Label> tweetLabels = new ArrayList();
     private ArrayList<Button> deleteButtons = new ArrayList();
@@ -117,8 +116,6 @@ public class TimedTweeterController implements Initializable {
         x = x + nummintext.prefWidth(-1) + gap;
         inbetween.setLayoutX(x);
         error.setVisible(false);
-        //KEEP
-        //queuesize.setText(tweetQueue.size() + "");
         queuesize.setText(tweetList.size() + "");
 
         status.setVisible(false);
@@ -133,11 +130,6 @@ public class TimedTweeterController implements Initializable {
         }).forEachOrdered((Button each) -> {
             each.setOnMouseClicked((Event t) -> {
                 int i = deleteButtons.indexOf(each);
-                //KEEP
-//                    Label label = tweetLabels.get(i);
-//                    String text = label.getText();
-
-//tweetQueue.remove(text);
                 tweetList.remove(i);
                 updateNextTweets();
                 updateQueueSizeLabel(tweetList.size());
@@ -170,22 +162,7 @@ public class TimedTweeterController implements Initializable {
                 status.setText("");
                 return;
             }
-            //KEEP
-//                if (tweetQueue.size() > 0 && min >= 1 && min <= 60) {
-//                    try {
-//                        tweetSchedule();
-//                        error.setVisible(false);
-//                        status.setVisible(true);
-//                        beginbutton.setDisable(true);
-//                        beginbutton.setOpacity(0.5);
-//                        status.setText("Running...");
-//                    } catch (Exception ex) {
-//                        ex.printStackTrace();
-//                    }
-//                } else if (tweetQueue.size() == 0) {
-//                    error.setText("Queue is empty");
-//                    error.setVisible(true);
-//                }
+
             if (tweetList.size() > 0 && min >= 1 && min <= 60) {
                 try {
                     tweetSchedule();
@@ -222,8 +199,7 @@ public class TimedTweeterController implements Initializable {
     }
 
     public static void addSchedTweet(String string) {
-        //KEEP
-//        tweetQueue.add(string);
+
         tweetList.add(string);
     }
 
@@ -231,9 +207,6 @@ public class TimedTweeterController implements Initializable {
         return MAXTWEETS;
     }
 
-//    public static ConcurrentLinkedQueue getQueue() {
-//        return tweetQueue;
-//    }
     public static List getList() {
         return tweetList;
     }
@@ -249,8 +222,6 @@ public class TimedTweeterController implements Initializable {
                     TimerTask task = new Helper();
                     timer.schedule(task, 200, min * 60000);
                     Platform.runLater(() -> {
-                        //KEEP
-//                            queuesize.setText(tweetQueue.size() + "");
                         queuesize.setText(tweetList.size() + "");
                     });
 
@@ -297,7 +268,7 @@ public class TimedTweeterController implements Initializable {
         return this.status;
     }
 
-    public void makeLists() {
+    private void makeLists() {
         tweetLabels.add(tweet0);
         tweetLabels.add(tweet1);
         tweetLabels.add(tweet2);
