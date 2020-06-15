@@ -51,7 +51,18 @@
             <version>4.0.7</version>
             <type>pom</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
 
       
     </dependencies>
@@ -99,22 +110,30 @@
                     </descriptorRefs>
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
-                      <manifest>
-                        <mainClass>mainapp.Driver</mainClass>
-                      </manifest>
+                        <manifest>
+                            <mainClass>mainapp.Driver</mainClass>
+                        </manifest>
                     </archive>
 
                 </configuration>
                 <executions>
-                  <execution>
-                    <id>make-assembly</id>
-                                        <!-- bind to the packaging phase -->
-                    <phase>package</phase>
-                    <goals>
-                        <goal>single</goal>
-                    </goals>
-                  </execution>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>
