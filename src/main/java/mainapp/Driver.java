@@ -22,7 +22,7 @@ import javafx.stage.WindowEvent;
 public class Driver extends Application {
 
     private FXMLLoader loader;
-    static GourmetController GC;
+    private static GourmetController GC;
 
     @Override
     public void start(Stage stage) throws IOException {
