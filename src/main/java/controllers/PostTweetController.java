@@ -283,32 +283,32 @@ public class PostTweetController implements Initializable {
         this.tweetarea.clear();
     }
 
-    private String pluralize(String sing) {
-        int length = sing.length();
-        String sub1 = sing.substring(length - 1);
-        String sub2 = sing.substring(length - 2, length);
+    private String pluralize(String s) {
+        int length = s.length();
+        String sub1 = s.substring(length - 1);
+        String sub2 = s.substring(length - 2, length);
         String added = "";
         String plur = "";
         if (sub1.equals("s") || sub1.equals("x") || sub1.equals("z") || sub2.equals("ss") || sub2.equals("sh") || sub2.equals("ch")) {
             added = "es";
-            plur = sing + added;
+            plur = s + added;
         } else if (sub1.equals("f")) {
-            String temp = sing.substring(0, length - 1);
+            String temp = s.substring(0, length - 1);
             plur = temp + "ves";
         } else if (sub2.equals("fe")) {
-            String temp = sing.substring(0, length - 2);
+            String temp = s.substring(0, length - 2);
             plur = temp + "ves";
         } else if (sub1.equals("y")) {
-            if ("aeiou".indexOf(sing.charAt(length - 2)) == -1) {
-                String temp = sing.substring(0, length - 1);
+            if ("aeiou".indexOf(s.charAt(length - 2)) == -1) {
+                String temp = s.substring(0, length - 1);
                 plur = temp + "ies";
             } else {
-                plur = sing + "s";
+                plur = s + "s";
             }
         } else if (sub1.equals("o")) {
-            plur = sing + "es";
+            plur = s + "es";
         } else {
-            plur = sing + "s";
+            plur = s + "s";
         }
         return plur;
     }
