@@ -153,13 +153,9 @@ public class PostTweetController implements Initializable {
         });
         this.schedbutton.setOnMouseClicked((Event t) -> {
             try {
-//KEEP
-//if (TimedTweeterController.getQueue().size() <= 49) {
                 if (TimedTweeterController.getList().size() <= 49) {
                     TimedTweeterController.addSchedTweet(tweetarea.getText());
-                    //ConcurrentLinkedQueue clq = TimedTweeterController.getQueue();
                     List lst = TimedTweeterController.getList();
-                    //Driver.getGC().getTTC().updateQueueSizeLabel(clq.size());
                     Driver.getGC().getTTC().updateQueueSizeLabel(lst.size());
                     if (lst.size() < 11) {
                         Driver.getGC().getTTC().updateNextTweets();
@@ -249,7 +245,7 @@ public class PostTweetController implements Initializable {
         this.bothbutton.setOpacity(0.5);
     }
 
-    private String getWord() throws SQLException {
+    public String getWord() throws SQLException {
         Connection conn = DriverManager.getConnection(Reader.getJDBC(), Reader.getUsername(), Reader.getPassword());
         int dbSize = Reader.getDBSize();
         Random random = new Random();
