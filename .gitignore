@@ -3,3 +3,5 @@
 *.jar
 *.lst
 *.txt
+src/main/resources/twitter4j.properties
+target/classes/twitter4j.properties
